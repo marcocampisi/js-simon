@@ -1,2 +1,21 @@
 @import "reset.css";
 @import "general.css";
+
+/* MAIN */
+
+.numbersContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid red;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.numbersContainer span {
+    margin: 0 20px;
+}

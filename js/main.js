@@ -19,7 +19,9 @@ function generateNumbers(numberArray) {
 
 function displayNumbers(container, numberArray) {
     for (let i = 0; i < numberArray.length; i++) {
-        container.innerHTML += simonNumbers[i];
+        let span = document.createElement('span');
+        span.textContent = numberArray[i];
+        container.appendChild(span);
     }
 }
 
