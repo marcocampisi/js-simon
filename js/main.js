@@ -1,6 +1,14 @@
 const simonContainer = document.querySelector('.numbersContainer');
 let simonNumbers = [];
 let userNumbers = [];
+let timer;
+
+function playGame() {
+    generateNumbers(simonNumbers);
+    displayNumbers(simonContainer, simonNumbers);
+    alert('Ricorda questi numeri, hai 30 secondi!');
+    timer = setTimeout(checkUserInput, 30000);
+}
 
 function generateNumbers(simonNumbers) {
     for (let i = 0; i <  5; i++) {
@@ -13,7 +21,6 @@ function displayNumbers(simonContainer, simonNumbers) {
     for (let i = 0; i < simonNumbers.length; i++) {
         simonContainer.innerHTML += simonNumbers[i];
     }
-    alert('Ricorda questi numeri, hai 30 secondi!');
 }
 
 function checkUserInput(userNumbers) {
@@ -21,7 +28,11 @@ function checkUserInput(userNumbers) {
         let userInput = parseInt(prompt(`Inserisci il numero ${i + 1}`));
         userNumbers.push(userInput);
     }
-}
 
-generateNumbers(simonNumbers);
-displayNumbers(simonContainer, simonNumbers);
+    let correctNumbers = [];
+    for (let i = 0; i < 5; i++) {
+        if (userInput[i] === simonNumbers[i]) {
+            correctNumbers.push(userInput[i]);            
+        }
+    }
+}
