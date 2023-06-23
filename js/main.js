@@ -29,7 +29,6 @@ function checkUserInput() {
     for (let i = 0; i < 5; i++) {
         getUserInput(i, userNumbers);
     }
-    checkResult(userNumbers, simonNumbers);
 }
 
 function getUserInput(index, userInput) {
