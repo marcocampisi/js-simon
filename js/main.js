@@ -7,32 +7,50 @@ function playGame() {
     generateNumbers(simonNumbers);
     displayNumbers(simonContainer, simonNumbers);
     alert('Ricorda questi numeri, hai 30 secondi!');
-    timer = setTimeout(checkUserInput, 30000);
+    timer = setTimeout(checkUserInput, 5000);
 }
 
-function generateNumbers(simonNumbers) {
+function generateNumbers(numberArray) {
     for (let i = 0; i <  5; i++) {
         let randomNum = Math.floor((Math.random() * 10) + 1);
         simonNumbers.push(randomNum);
     }
 }
 
-function displayNumbers(simonContainer, simonNumbers) {
-    for (let i = 0; i < simonNumbers.length; i++) {
-        simonContainer.innerHTML += simonNumbers[i];
+function displayNumbers(container, numberArray) {
+    for (let i = 0; i < numberArray.length; i++) {
+        container.innerHTML += simonNumbers[i];
     }
 }
 
-function checkUserInput(userNumbers) {
+function checkUserInput() {
     for (let i = 0; i < 5; i++) {
-        let userInput = parseInt(prompt(`Inserisci il numero ${i + 1}`));
-        userNumbers.push(userInput);
+        getUserInput(i, userNumbers);
     }
+    checkResult(userNumbers, simonNumbers);
+}
 
+function getUserInput(index, userInput) {
+    let input = parseInt(prompt(`Inserisci il numero ${index + 1}`));
+    userInput.push(input);
+    if (userInput.length === 5) {
+        checkResult(userNumbers, simonNumbers);
+    }
+}
+
+function checkResult(userInput, numberArray) {
     let correctNumbers = [];
     for (let i = 0; i < 5; i++) {
-        if (userInput[i] === simonNumbers[i]) {
-            correctNumbers.push(userInput[i]);            
+        if (userInput[i] === numberArray[i]) {
+            correctNumbers.push(userInput[i]);
         }
+    }
+
+    if(correctNumbers.length > 0) {
+        let result = `Hai indovinato ${correctNumbers.length} numeri: ${correctNumbers.join(', ')}`;
+        alert(result);
+    }
+    else {
+        alert('Non hai indovinato nessun numero.');
     }
 }
