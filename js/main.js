@@ -11,7 +11,7 @@ function playGame() {
     timer = setTimeout(function() {
         simonContainer.classList.add('d-none');
         setTimeout(checkUserInput, 500);
-    }, 3000);
+    }, 30000);
 }
 
 function generateNumbers(numberArray) {
@@ -53,11 +53,16 @@ function checkResult(userInput, numberArray) {
 
     if(correctNumbers.length > 0) {
         let result = `Hai indovinato ${correctNumbers.length} numeri: ${correctNumbers.join(', ')}`;
-        alert(result);
-    }
-    else {
-        alert('Non hai indovinato nessun numero.');
-    }
+        setTimeout(function() {
+            alert(result);
+            resetGame();
+          }, 200);
+        } else {
+          setTimeout(function() {
+            alert('Non hai indovinato nessun numero.');
+            resetGame();
+            }, 200);
+        }
 }
 
 function resetGame() {
