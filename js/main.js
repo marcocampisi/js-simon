@@ -7,7 +7,11 @@ function playGame() {
     generateNumbers(simonNumbers);
     displayNumbers(simonContainer, simonNumbers);
     alert('Ricorda questi numeri, hai 30 secondi!');
-    timer = setTimeout(checkUserInput, 5000);
+    simonContainer.classList.remove('d-none');
+    timer = setTimeout(function() {
+        simonContainer.classList.add('d-none');
+        setTimeout(checkUserInput, 500);
+    }, 3000);
 }
 
 function generateNumbers(numberArray) {
@@ -55,3 +59,10 @@ function checkResult(userInput, numberArray) {
         alert('Non hai indovinato nessun numero.');
     }
 }
+
+function resetGame() {
+    simonNumbers = [];
+    userNumbers = [];
+    clearTimeout(timer);
+    simonContainer.innerHTML = "";
+  }
